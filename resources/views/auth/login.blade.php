@@ -33,7 +33,7 @@
         </div>
 
         <x-primary-button class="mt-3">
-            {{ __('Sign in') }}
+            {{ __('Login') }}
         </x-primary-button>
 
         <p class="mt-3 text-center text-xs text-gray-600 sm:text-sm">Don't have an account? <a href="/register" class="text-blue-500 font-semibold">Sign up</a></p>
