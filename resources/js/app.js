@@ -54,8 +54,6 @@ new Chart(ctx2, {
 });
 
 const navigation = document.getElementById('navigation');
-const open = document.getElementById('open');
-const close = document.getElementById('close');
 const burger = document.getElementById('burger');
 const burgerSpan = document.querySelectorAll('.burger-span');
 
@@ -81,4 +79,10 @@ burger.addEventListener('click', () => {
             navigation.classList.add('hidden');
         }, 300);
     }
+})
+
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+darkModeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
 })
