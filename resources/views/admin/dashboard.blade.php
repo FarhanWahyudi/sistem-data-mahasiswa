@@ -65,7 +65,7 @@
     </div>
     <div class="grid grid-cols-2 gap-8">    
         <div class="col-span-full bg-white rounded-xl border border-gray-200 p-5 md:col-span-1 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
-            <h2 class="text-gray-500 font-medium dark:text-white">Total mahasiswa berdasarkan gender</h2>
+            <h2 class="text-gray-500 font-medium dark:text-white">Total mahasiswa berdasarkan jenis kelamin</h2>
             <div class="mt-5 xl:h-96">
                 <canvas id="myChart"></canvas>
             </div>
