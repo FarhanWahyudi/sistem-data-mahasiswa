@@ -16,10 +16,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-poppins antialiased">
-        <div class="absolute top-0 left-0 w-full h-screen bg-gray-50 -z-10">
+        <div class="fixed top-0 left-0 w-full h-screen bg-gray-50 -z-10">
             <div class="w-full h-[30vh] bg-indigo-500"></div>
         </div>
-        <div class="fixed top-1/2 left-5 -translate-y-1/2 w-72 h-[95vh] border border-gray-200 bg-white rounded-2xl p-5">
+        <div id="navigation" class="hidden lg:block fixed top-1/2 left-0 transform -translate-x-full -translate-y-1/2 w-56 h-[95vh] border border-gray-200 bg-white rounded-2xl p-5 xl:w-72 lg:translate-x-5 transition-all duration-500">
             <h2 class="text-center text-gray-700 text-2xl font-medium">Sistem Data Mahasiswa</h2>
             <hr class="border-t border-gray-300 my-5">
             <div class="flex flex-col gap-1">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="ml-80 mt-7 px-10">
+        <div class="mt-7 px-5 md:px-10 lg:ml-60 xl:ml-80">
             @yield('content')
         </div>
     </body>
