@@ -5,7 +5,7 @@
 <div class="flex flex-col gap-8 pb-10">
     <div class="flex items-center justify-between">
         <div class="text-white font-medium">
-            <span class="text-sm"><a href="/" class="text-gray-300">Admin</a> / Dashboard</span>
+            <span class="text-sm"><a href="{{ route('dashboard') }}" class="text-gray-300">Admin</a> / Dashboard</span>
             <h1 class="font-semibold">Dashboard</h1>
         </div>
         <div class="flex items-center gap-5">
@@ -137,6 +137,13 @@
             </table>
         </div>
     </div>
-</div>  
+</div>
+
+<script src="resources/js/chart.js"></script>
 
 @endsection
+
+
+@push('scripts')
+    @vite('resources/js/chart.js')
+@endpush
