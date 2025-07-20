@@ -46,17 +46,15 @@ document.querySelectorAll('.btn-show').forEach(button => {
 
         showStudent.forEach((student) => {
             student.classList.add('hidden');
+
+            if (student.dataset.showStudent == nim) {
+                student.classList.remove('hidden')
+            }
         });
 
         editStudent.forEach((student) => {
             student.classList.add('hidden');
         });
-
-        showStudent.forEach((student) => {
-            if (student.dataset.showStudent == nim) {
-                student.classList.remove('hidden')
-            }
-        })
     });
 });
 
@@ -79,12 +77,10 @@ document.querySelectorAll('.btn-edit').forEach(button => {
 
         editStudent.forEach((student) => {
             student.classList.add('hidden');
-        });
-
-        editStudent.forEach((student) => {
+            
             if (student.dataset.editStudent == nim) {
                 student.classList.remove('hidden')
             }
-        })
+        });
     })
 })
