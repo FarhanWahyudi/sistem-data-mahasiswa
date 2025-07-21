@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\MajorRequest;
+use App\Models\Student;
+use App\Services\MajorService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+
+class MajorController extends Controller
+{
+    private MajorService $majorService;
+
+    public function __construct(MajorService $majorService) {
+        $this->majorService = $majorService;
+    }
+
+    public function index()
+    {
+        $majors = $this->majorService->getAll();
+
+        return view('admin.jurusan', [
+            'majors' => $majors
+        ]);
+    }
+
+    public function show(int $id)
+    {
+        $major = $this->majorService->getById($id);;
+        return response()->json($major);
+    }
+
+    public function store(MajorRequest $request)
+    {
+        $major = $request->validated()['major'];
+        $this->majorService->create($major);
+
+        return response()->json(['message' => 'Jurusan berhasil ditambahkan.']);
+    }
+
+    public function update(MajorRequest $request, int $id)
+    {
+        $major = $request->validated()['major'];
+
+        try {
+            $this->majorService->update($id, $major);
+            return response()->json(['message' => 'Jurusan berhasil diedit.']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['success' => false, 'message' => 'Jurusan tidak ditemukan'], 404);
+        }
+    }
+
+    public function destroy(int $id)
+    {
+        try {
+            $this->majorService->delete($id);
+            return redirect()->route('major.view');
+        } catch (ModelNotFoundException $e){
+            return redirect()->route('major.view')->with('error', 'Jurusan tidak ditemukan');
+        }
+    }
+
+    public function students($id)
+    {
+        $students = Student::where('major_id', $id)->get();
+
+        return response()->json([
+            'students' => $students,
+        ]);
+    }
+}

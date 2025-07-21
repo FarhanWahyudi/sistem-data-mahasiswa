@@ -1,11 +1,14 @@
-const showMajor = document.querySelectorAll('.show-major')
-const editMajor = document.querySelectorAll('.edit-major')
+const showMajor = document.getElementById('show-major')
+const editMajor = document.getElementById('edit-major')
 const addMajor = document.getElementById('add-major')
 const modal = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content');
 
 modal.addEventListener('click', function (e) {
     if (!modalContent.contains(e.target)) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        history.replaceState({}, '', baseUrl);
+
         modal.classList.add('hidden');
         modal.classList.remove('flex');
     }
@@ -14,18 +17,17 @@ modal.addEventListener('click', function (e) {
 document.querySelectorAll('.btn-add-major').forEach(button => {
     button.addEventListener('click', function () {
 
+        const baseUrl = window.location.origin + window.location.pathname;
+        history.replaceState({}, '', baseUrl);
+
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
         document.getElementById('data-major-empty').classList.add('hidden');
         
-        showMajor.forEach((major) => {
-            major.classList.add('hidden');
-        });
+        showMajor.classList.add('hidden');
         
-        editMajor.forEach((major) => {
-            major.classList.add('hidden');
-        });
+        editMajor.classList.add('hidden');
         
         addMajor.classList.remove('hidden');
     })
@@ -33,9 +35,9 @@ document.querySelectorAll('.btn-add-major').forEach(button => {
 
 document.querySelectorAll('.btn-show').forEach(button => {
     button.addEventListener('click', function () {
-        const nim = this.dataset.nim;
+        const id = this.dataset.id;
         
-        history.pushState({}, '', '?nim=' + nim);
+        history.pushState({}, '', '?id=' + id);
 
         modal.classList.remove('hidden')
         modal.classList.add('flex')
@@ -44,25 +46,40 @@ document.querySelectorAll('.btn-show').forEach(button => {
 
         addMajor.classList.add('hidden');
 
-        showMajor.forEach((major) => {
-            major.classList.add('hidden');
+        showMajor.classList.remove('hidden');
 
-            if (major.dataset.showMajor == nim) {
-                major.classList.remove('hidden')
+        editMajor.classList.add('hidden');
+
+        fetch(`/admin/jurusan/${id}/students`)
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.querySelector('#students-table-body');
+            tbody.innerHTML = '';
+
+            if (data.students.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="2" class="text-center py-4 text-gray-500">Tidak ada data mahasiswa</td></tr>';
+                return;
             }
-        });
 
-        editMajor.forEach((major) => {
-            major.classList.add('hidden');
-        });
+            data.students.forEach(student => {
+                const row = `
+                    <tr class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
+                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">${student.nim}</td>
+                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">${student.name}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        })
+        .catch(err => console.error('Gagal ambil data:', err));
     });
 });
 
 document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function () {
-        const nim = this.dataset.nim;
+        const id = this.dataset.id;
 
-        history.pushState({}, '', '?edit-nim=' + nim);
+        history.pushState({}, '', '?edit-id=' + id);
 
         modal.classList.remove('hidden')
         modal.classList.add('flex')
@@ -71,16 +88,30 @@ document.querySelectorAll('.btn-edit').forEach(button => {
 
         addMajor.classList.add('hidden');
 
-        showMajor.forEach((major) => {
-            major.classList.add('hidden');
-        });
+        showMajor.classList.add('hidden');
 
-        editMajor.forEach((major) => {
-            major.classList.add('hidden');
+        editMajor.classList.remove('hidden')
 
-            if (major.dataset.editMajor == nim) {
-                major.classList.remove('hidden')
-            }
-        });
+        fetch(`/admin/jurusan/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('input-name').value = data.name;
+            document.getElementById('input-id').value = id;
+        })
+        .catch(err => console.error('Gagal ambil data jurusan:', err));
     })
 })
+
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const editId = params.get('edit-id');
+
+    if (id) {
+        document.querySelector(`.btn-show[data-id="${id}"]`)?.click();
+    }
+
+    if (editId) {
+        document.querySelector(`.btn-edit[data-id="${editId}"]`)?.click();
+    }
+});
