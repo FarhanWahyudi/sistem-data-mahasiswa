@@ -36,6 +36,7 @@ class MajorController extends Controller
         $major = $request->validated()['major'];
         $this->majorService->create($major);
 
+        toastr()->closeButton(true)->success('Data berhasil ditambahkan.');
         return response()->json(['message' => 'Jurusan berhasil ditambahkan.']);
     }
 
@@ -45,8 +46,10 @@ class MajorController extends Controller
 
         try {
             $this->majorService->update($id, $major);
+            toastr()->closeButton(true)->success('Data berhasil diperbarui.');
             return response()->json(['message' => 'Jurusan berhasil diedit.']);
         } catch (ModelNotFoundException $e) {
+            toastr()->closeButton(true)->danger('Data gagal diperbarui.');
             return response()->json(['success' => false, 'message' => 'Jurusan tidak ditemukan'], 404);
         }
     }
@@ -55,8 +58,10 @@ class MajorController extends Controller
     {
         try {
             $this->majorService->delete($id);
+            toastr()->closeButton(true)->success('Data berhasil dihapus.');
             return redirect()->route('major.view');
         } catch (ModelNotFoundException $e){
+            toastr()->closeButton(true)->success('Data gagal dihapus.');
             return redirect()->route('major.view')->with('error', 'Jurusan tidak ditemukan');
         }
     }
