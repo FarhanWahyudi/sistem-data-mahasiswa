@@ -37,4 +37,9 @@ class MajorService
     {
         return $this->majorRepository->delete($id);
     }
+
+    public function countAll()
+    {
+        return $this->majorRepository->countAll();
+    }
 }

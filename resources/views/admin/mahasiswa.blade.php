@@ -5,7 +5,7 @@
 <div class="flex flex-col gap-8 pb-10">
     <div class="flex items-center justify-between">
         <div class="text-white font-medium">
-            <span class="text-sm"><a href="{{ route('dashboard') }}" class="text-gray-300">Admin</a> / Mahasiswa</span>
+            <span class="text-sm"><a href="{{ route('dashboard.view') }}" class="text-gray-300">Admin</a> / Mahasiswa</span>
             <h1 class="font-semibold">Daftar Mahasiswa</h1>
         </div>
         <div class="flex items-center gap-5">

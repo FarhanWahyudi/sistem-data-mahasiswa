@@ -2,20 +2,23 @@ import Chart from 'chart.js/auto';
 
 const ctx = document.getElementById('myChart');
 
+const male = parseInt(ctx.dataset.male);
+const female = parseInt(ctx.dataset.female);
+
 new Chart(ctx, {
     type: 'doughnut',
     data: {
         labels: ['Laki-laki', 'Perempuan'],
         datasets: [{
             label: 'Total Mahasiswa',
-            data: [12, 19],
+            data: [male, female],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.4)',
                 'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 99, 132, 0.4)',
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
+                'rgba(255, 99, 132, 1)',
             ],
             borderWidth: 1
         }]
@@ -32,14 +35,18 @@ new Chart(ctx, {
 });
 
 const ctx2 = document.getElementById('myChart2');
+const majors = JSON.parse(ctx2.dataset.majors);
+
+const labels = majors.map(major => major.name);
+const data = majors.map(major => major.count); 
 
 new Chart(ctx2, {
     type: 'doughnut',
     data: {
-        labels: ['Teknik Sipil', 'Teknik Informatika', 'Teknik Mesin', 'Teknik Elektro'],
+        labels: labels,
         datasets: [{
             label: 'Total Mahasiswa',
-            data: [12, 19, 3, 5],
+            data: data,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.4)',
                 'rgba(54, 162, 235, 0.4)',

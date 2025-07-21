@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/admin/dashboard', 'index')->name('dashboard.view');
+});
 
 Route::controller(StudentController::class)->group(function () {
     Route::get('/admin/mahasiswa', 'index')->name('student.view');
@@ -21,11 +26,6 @@ Route::controller(MajorController::class)->group(function () {
     Route::post('/admin/jurusan/delete/{id}', 'destroy')->name('major.destroy');
     Route::get('/admin/jurusan/{id}/students', 'students')->name('major.students');
 });
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
-
 
 
 // Route::get('/dashboard', function () {

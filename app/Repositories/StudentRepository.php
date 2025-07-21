@@ -33,4 +33,14 @@ class StudentRepository
         $student = Student::findOrFail($id);
         $student->delete();
     }
+
+    public function countAll()
+    {
+        return Student::count();
+    }
+
+    public function countByGender(string $gender)
+    {
+        return Student::where('gender', $gender)->count();
+    }
 }

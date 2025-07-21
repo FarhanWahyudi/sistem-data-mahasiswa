@@ -37,4 +37,14 @@ class StudentService
     {
         return $this->studentRepository->delete($id);
     }
+
+    public function countAll()
+    {
+        return $this->studentRepository->countAll();
+    }
+
+    public function countByGender(string $gender)
+    {
+        return $this->studentRepository->countByGender($gender);
+    }
 }

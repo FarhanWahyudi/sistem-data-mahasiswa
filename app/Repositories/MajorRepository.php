@@ -37,4 +37,9 @@ class MajorRepository
         $major = Major::findOrFail($id);
         $major->delete();
     }
+
+    public function countAll()
+    {
+        return Major::count();
+    }
 }

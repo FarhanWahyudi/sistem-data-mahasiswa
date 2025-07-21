@@ -5,7 +5,7 @@
 <div class="flex flex-col gap-8 pb-10">
     <div class="flex items-center justify-between">
         <div class="text-white font-medium">
-            <span class="text-sm"><a href="{{ route('dashboard') }}" class="text-gray-300">Admin</a> / Dashboard</span>
+            <span class="text-sm"><a href="{{ route('dashboard.view') }}" class="text-gray-300">Admin</a> / Dashboard</span>
             <h1 class="font-semibold">Dashboard</h1>
         </div>
         <div class="flex items-center gap-5">
@@ -25,7 +25,7 @@
         <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Total Mahasiswa</h2>
-                <span class="text-3xl font-medium dark:text-white">12</span>
+                <span class="text-3xl font-medium dark:text-white">{{ $totalStudents }}</span>
             </div>
             <div class="flex items-center justify-center bg-gradient-to-bl from-orange-500 to-orange-300 rounded-full w-11 h-11">
                 <svg class="text-white w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -36,7 +36,7 @@
         <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Mahasiswa Pria</h2>
-                <span class="text-3xl font-medium dark:text-white">4</span>
+                <span class="text-3xl font-medium dark:text-white">{{ $maleStudents }}</span>
             </div>
             <div class="flex items-center justify-center bg-gradient-to-bl from-blue-500 to-blue-300 rounded-full w-11 h-11">
                 <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M289.8 46.8c3.7-9 12.5-14.8 22.2-14.8l112 0c13.3 0 24 10.7 24 24l0 112c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-33.4-33.4L321 204.2c19.5 28.4 31 62.7 31 99.8c0 97.2-78.8 176-176 176S0 401.2 0 304s78.8-176 176-176c37 0 71.4 11.4 99.8 31l52.6-52.6L295 73c-6.9-6.9-8.9-17.2-5.2-26.2zM400 80s0 0 0 0s0 0 0 0s0 0 0 0zM176 416a112 112 0 1 0 0-224 112 112 0 1 0 0 224z"/></svg>
@@ -45,7 +45,7 @@
         <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Mahasiswa Wanita</h2>
-                <span class="text-3xl font-medium dark:text-white">8</span>
+                <span class="text-3xl font-medium dark:text-white">{{ $femaleStudents }}</span>
             </div>
             <div class="flex items-center justify-center bg-gradient-to-bl from-pink-500 to-pink-300 rounded-full w-11 h-11">
                 <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M80 176a112 112 0 1 1 224 0A112 112 0 1 1 80 176zM224 349.1c81.9-15 144-86.8 144-173.1C368 78.8 289.2 0 192 0S16 78.8 16 176c0 86.3 62.1 158.1 144 173.1l0 34.9-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 32c0 17.7 14.3 32 32 32s32-14.3 32-32l0-32 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-32 0 0-34.9z"/></svg>
@@ -54,7 +54,7 @@
         <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Total Jurusan</h2>
-                <span class="text-3xl font-medium dark:text-white">5</span>
+                <span class="text-3xl font-medium dark:text-white">{{ $totalMajors }}</span>
             </div>
             <div class="flex items-center justify-center bg-gradient-to-bl from-green-500 to-green-300 rounded-full w-11 h-11">
                 <svg class="text-white w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -67,13 +67,18 @@
         <div class="col-span-full bg-white rounded-xl border border-gray-200 p-5 md:col-span-1 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
             <h2 class="text-gray-500 font-medium dark:text-white">Total mahasiswa berdasarkan jenis kelamin</h2>
             <div class="mt-5 xl:h-96">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" data-male="{{ $maleStudents }}" data-female="{{ $femaleStudents }}"></canvas>
             </div>
         </div>
         <div class="col-span-full bg-white rounded-xl border border-gray-200 p-5 md:col-span-1 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
             <h2 class="text-gray-500 font-medium dark:text-white">Total mahasiswa berdasarkan jurusan</h2>
             <div class="mt-5 xl:h-96">
-                <canvas id="myChart2"></canvas>
+                <canvas id="myChart2"
+                data-majors='@json($majors->map(fn($m) => [
+                    'name' => $m->name,
+                    'count' => $m->total_students
+                ]))'>
+                </canvas>
             </div>
         </div>
     </div>
@@ -91,27 +96,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b border-gray-200 dark:border-gray-400">
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Farhan Wahyudi</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">8764936</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">31 Maret 2025</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Pria</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Teknik Informatika</td>
-                    </tr>
-                    <tr class="border-b border-gray-200 dark:border-gray-400">
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Farhan Wahyudi</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">8764936</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">31 Maret 2025</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Pria</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Teknik Informatika</td>
-                    </tr>
-                    <tr class="border-b border-gray-200 dark:border-gray-400">
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Farhan Wahyudi</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">8764936</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">31 Maret 2025</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Pria</td>
-                        <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">Teknik Informatika</td>
-                    </tr>
+
+                    @foreach ($students as $student)
+                        <tr class="border-b border-gray-200 dark:border-gray-400">
+                            <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">{{ $student->name }}</td>
+                            <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">{{ $student->nim }}</td>
+                            <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">{{ \Carbon\Carbon::parse($student->birth_date)->locale('id')->translatedFormat('d F Y') }}</td>
+                            <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">{{ $student->gender === 'male' ? 'Laki-laki' : 'Perempuan' }}</td>
+                            <td class="px-3 text-sm py-4 text-gray-700 dark:text-gray-300">{{ $student->major->name }}</td>
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -125,14 +120,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b border-gray-200 dark:border-gray-400">
-                        <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">Teknik Informatika</td>
-                        <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">20</td>
-                    </tr>
-                    <tr class="border-b border-gray-200 dark:border-gray-400">
-                        <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">Teknik Informatika</td>
-                        <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">20</td>
-                    </tr>
+
+                    @foreach ($majors as $major)
+                        <tr class="border-b border-gray-200 dark:border-gray-400">
+                            <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">{{ $major->name }}</td>
+                            <td class="text-sm px-3 py-4 text-gray-700 dark:text-gray-300">{{ $major->total_students }}</td>
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
