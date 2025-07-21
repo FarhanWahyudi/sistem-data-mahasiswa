@@ -117,10 +117,6 @@
                                 <tr id="students-table-body" class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
                                 
                                 </tr>
-                                {{-- <tr class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
-                                    <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">8764937</td>
-                                    <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">Akmak</td>
-                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

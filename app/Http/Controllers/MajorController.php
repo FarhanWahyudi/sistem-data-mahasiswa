@@ -47,10 +47,10 @@ class MajorController extends Controller
         try {
             $this->majorService->update($id, $major);
             toastr()->closeButton(true)->success('Data berhasil diperbarui.');
-            return response()->json(['message' => 'Jurusan berhasil diedit.']);
+            return response()->json(['message' => 'Data berhasil diperbarui.']);
         } catch (ModelNotFoundException $e) {
             toastr()->closeButton(true)->danger('Data gagal diperbarui.');
-            return response()->json(['success' => false, 'message' => 'Jurusan tidak ditemukan'], 404);
+            return response()->json(['success' => false, 'message' => 'Data tidak ditemukan'], 404);
         }
     }
 
@@ -62,7 +62,7 @@ class MajorController extends Controller
             return redirect()->route('major.view');
         } catch (ModelNotFoundException $e){
             toastr()->closeButton(true)->success('Data gagal dihapus.');
-            return redirect()->route('major.view')->with('error', 'Jurusan tidak ditemukan');
+            return redirect()->route('major.view')->with('error', 'Data tidak ditemukan');
         }
     }
 

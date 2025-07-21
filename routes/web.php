@@ -2,7 +2,16 @@
 
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
+Route::controller(StudentController::class)->group(function () {
+    Route::get('/admin/mahasiswa', 'index')->name('student.view');
+    Route::get('/admin/mahasiswa/{id}', 'show')->name('student.show');
+    Route::post('/admin/mahasiswa', 'store')->name('student.store');
+    Route::post('/admin/mahasiswa/update/{student}', 'update')->name('student.update');
+    Route::post('/admin/mahasiswa/delete/{id}', 'destroy')->name('student.destroy');
+});
 
 Route::controller(MajorController::class)->group(function () {
     Route::get('/admin/jurusan', 'index')->name('major.view');
@@ -17,9 +26,7 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 
-Route::get('/admin/mahasiswa', function () {
-    return view('admin.mahasiswa');
-})->name('daftar.mahasiswa');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

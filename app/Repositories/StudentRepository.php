@@ -8,12 +8,12 @@ class StudentRepository
 {
     public function getAll(array $fields)
     {
-        return Student::select($fields)->with(['majors:name,student_id'])->orderBy('name')->paginate(5);
+        return Student::select($fields)->with(['major:id,name'])->orderBy('name')->paginate(5);
     }
 
     public function getById(int $id, array $fields)
     {
-        return Student::select($fields)->with(['majors:name,student_id'])->orderBy('name')->findOrFail($id);
+        return Student::select($fields)->with(['major:id,name'])->orderBy('name')->findOrFail($id);
     }
 
     public function create(array $data)
