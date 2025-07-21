@@ -27,4 +27,13 @@ class MajorRequest extends FormRequest
             'major' => 'required|string|unique:majors,name,' . $id
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'major.required' => 'Nama jurusan wajib diisi',
+            'major.string' => 'Nama jurusan harus berupa teks.',
+            'major.unique' => 'Nama jurusan ini sudah ada.',
+        ];
+    }
 }

@@ -155,68 +155,6 @@
     </div>
 </div>
 
-<script>
-    // menambahkan data jurusan secara AJAX (tanpa reload) agar pesan error tidak hilang
-    document.getElementById('major-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-
-        fetch("{{ route('major.store') }}", {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": form.querySelector('input[name=_token]').value,
-                "Accept": "application/json"
-            },
-            body: formData
-        })
-        .then(async response => {
-            if (!response.ok) {
-                const data = await response.json();
-                if (data.errors) {
-                    document.getElementById('name-error').textContent = data.errors.major?.[0] || '';
-                }
-            } else {
-                location.reload();
-            }
-        })
-        .catch(error => console.error('Gagal kirim:', error));
-    });
-
-    // mengedit data jurusan secara AJAX (tanpa reload) agar pesan error tidak hilang
-    document.getElementById('major-edit-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-        const id = form.querySelector('input[name="id-major"]').value;
-
-        fetch(`/admin/jurusan/update/${id}`, {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": form.querySelector('input[name=_token]').value,
-                "Accept": "application/json"
-            },
-            body: formData
-        })
-        .then(async response => {
-            if (!response.ok) {
-                const data = await response.json();
-                if (data.errors) {
-                    document.getElementById('edit-name-error').textContent = data.errors.major?.[0] || '';
-                }
-            } else {
-                const url = new URL(window.location.href);
-                url.searchParams.delete('edit-id');
-                window.history.replaceState({}, '', url); // Update URL di address bar tanpa reload
-                window.location.reload();
-            }
-        })
-        .catch(error => console.error('Gagal kirim:', error));
-    });
-</script>
-
 @endsection
 
 @push('scripts')
