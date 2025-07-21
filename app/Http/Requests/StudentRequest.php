@@ -34,4 +34,36 @@ class StudentRequest extends FormRequest
             'provinsi' => 'required|string'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nim.required' => 'NIM wajib diisi.',
+            'nim.numeric' => 'NIM harus berupa angka.',
+            'nim.digits_between' => 'NIM minimal terdiri dari 8 sampai 11 digit.',
+            'nim.unique' => 'NIM ini sudah ada.',
+
+            'name.required' => 'Nama wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+
+            'birth_date.required' => 'Tanggal Lahir wajib diisi',
+            'birth_date.date' => 'Tanggal Lahir harus berupa tanggal.',
+            'birth_date.before' => 'Tanggal Lahir harus sebelum hari ini.',
+
+            'gender.required' => 'Gender wajib diisi.',
+            'gender.in' => 'Gender wajib diisi dengan Laki-laki / Perempuan.',
+
+            'major.required' => 'Jurusan wajib diisi.',
+            'major.exists' => 'Jurusan wajib diisi dengan data yang tersedia.',
+
+            'kecamatan.required' => 'Kecamatan wajib diisi.',
+            'kecamatan.string' => 'Kecamatan harus berupa teks.',
+
+            'kabupaten.required' => 'Kabupaten wajib diisi.',
+            'kabupaten.string' => 'Kabupaten harus berupa teks.',
+
+            'provinsi.required' => 'Provinsi wajib diisi.',
+            'provinsi.string' => 'Provinsi harus berupa teks.',
+        ];
+    }
 }

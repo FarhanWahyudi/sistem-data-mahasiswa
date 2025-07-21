@@ -183,7 +183,7 @@ document.getElementById('student-form').addEventListener('submit', function(e) {
             if (data.errors) {
                 document.getElementById('nim-error').textContent = data.errors.nim?.[0] || '';
                 document.getElementById('name-error').textContent = data.errors.name?.[0] || '';
-                document.getElementById('major-error').textContent = data.errors.major_id?.[0] || '';
+                document.getElementById('major-error').textContent = data.errors.major?.[0] || '';
                 document.getElementById('birth-date-error').textContent = data.errors.birth_date?.[0] || '';
                 document.getElementById('gender-error').textContent = data.errors.gender?.[0] || '';
                 document.getElementById('kec-error').textContent = data.errors.kecamatan?.[0] || '';
