@@ -6,11 +6,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(DashboardController::class)->group(function () {
+Route::controller(DashboardController::class)->middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', 'index')->name('dashboard.view');
 });
 
-Route::controller(StudentController::class)->group(function () {
+Route::controller(StudentController::class)->middleware(['auth'])->group(function () {
     Route::get('/admin/mahasiswa', 'index')->name('student.view');
     Route::get('/admin/mahasiswa/{id}', 'show')->name('student.show');
     Route::post('/admin/mahasiswa', 'store')->name('student.store');
@@ -20,7 +20,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('/admin/mahasiswa/doc/excel', 'exportExcel')->name('student.excel');
 });
 
-Route::controller(MajorController::class)->group(function () {
+Route::controller(MajorController::class)->middleware(['auth'])->group(function () {
     Route::get('/admin/jurusan', 'index')->name('major.view');
     Route::get('/admin/jurusan/{id}', 'show')->name('major.show');
     Route::post('/admin/jurusan', 'store')->name('major.store');
