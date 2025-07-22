@@ -48,93 +48,106 @@
                 </form>
             </div>
             <div class="overflow-x-auto">
-                <div class="w-[43rem] sm:w-full">
-                    <table class="w-full mt-5">
-                        <thead>
-                            <tr class="border-b border-gray-200 gap-x-10 dark:border-gray-400 transition-all duration-300">
-                                <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NAMA</th>
-                                <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NIM</th>
-                                <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">JURUSAN</th>
-                                <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-    
-                            @foreach ($students as $student)
-                                <tr class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
-                                    <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->name }}</td>
-                                    <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->nim }}</td>
-                                    <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->major->name }}</td>
-                                    <td class="px-3 py-4">
-                                        <div class="flex gap-2 md:gap-3">
-                                            <button class="btn-show" data-id="{{ $student->id }}">
-                                                <svg class="w-4 md:w-5 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
-                                            </button>
-                                            <button class="btn-edit" data-id="{{ $student->id }}">
-                                                <svg class="w-3 md:w-4 text-yellow-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                                            </button>
-                                            <form method="POST" action="{{ route('student.destroy', $student->id) }}" class="flex items-center justify-center">
-                                                @csrf
-                                                <button type="submit">
-                                                    <svg class="w-3 md:w-4 text-red-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
+                <div class="{ !$students->isEmpty() ? 'w-[43rem]' : 'w-full' } sm:w-full">
+                    @if (!$students->isEmpty())
+
+                        <table class="w-full mt-5">
+                            <thead>
+                                <tr class="border-b border-gray-200 gap-x-10 dark:border-gray-400 transition-all duration-300">
+                                    <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NAMA</th>
+                                    <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NIM</th>
+                                    <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">JURUSAN</th>
+                                    <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">AKSI</th>
                                 </tr>
-                            @endforeach
-    
-                        </tbody>
-                    </table>
-    
-                    <div class="mt-4 flex justify-center gap-1.5">
-    
-                        @php
-                            $currentPage = $students->currentPage();
-                            $lastPage = $students->lastPage();
-                            $start = max($currentPage - 2, 1);
-                            $end = min($currentPage + 2, $lastPage);
-                        @endphp
-    
-                        {{-- button prevent --}}
-                        @if ($students->onFirstPage())
-                            <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed"><</span>
-                        @else
-                            <a href="{{ $students->previousPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"><</a>
-                        @endif
-    
-                        {{-- Titik sebelum --}}
-                        @if ($start > 1)
-                            <a href="{{ $students->url(1) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">1</a>
-                            @if ($start > 2)
-                                <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
-                            @endif
-                        @endif
-    
-                        {{-- Nomor halaman tengah --}}
-                        @for ($i = $start; $i <= $end; $i++)
-                            @if ($i == $currentPage)
-                                <span class="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-md">{{ $i }}</span>
+                            </thead>
+                            <tbody>
+        
+                                @foreach ($students as $student)
+                                    <tr class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
+                                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->name }}</td>
+                                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->nim }}</td>
+                                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->major->name }}</td>
+                                        <td class="px-3 py-4">
+                                            <div class="flex gap-2 md:gap-3">
+                                                <button class="btn-show" data-id="{{ $student->id }}">
+                                                    <svg class="w-4 md:w-5 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
+                                                </button>
+                                                <button class="btn-edit" data-id="{{ $student->id }}">
+                                                    <svg class="w-3 md:w-4 text-yellow-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                                                </button>
+                                                <form method="POST" action="{{ route('student.destroy', $student->id) }}" class="flex items-center justify-center">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        <svg class="w-3 md:w-4 text-red-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+        
+                            </tbody>
+                        </table>
+        
+                        <div class="mt-4 flex justify-center gap-1.5">
+        
+                            @php
+                                $currentPage = $students->currentPage();
+                                $lastPage = $students->lastPage();
+                                $start = max($currentPage - 2, 1);
+                                $end = min($currentPage + 2, $lastPage);
+                            @endphp
+        
+                            {{-- button prevent --}}
+                            @if ($students->onFirstPage())
+                                <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed"><</span>
                             @else
-                                <a href="{{ $students->url($i) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $i }}</a>
+                                <a href="{{ $students->previousPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"><</a>
                             @endif
-                        @endfor
-    
-                        {{-- Titik setelah --}}
-                        @if ($end < $lastPage)
-                            @if ($end < $lastPage - 1)
-                                <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
+        
+                            {{-- Titik sebelum --}}
+                            @if ($start > 1)
+                                <a href="{{ $students->url(1) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">1</a>
+                                @if ($start > 2)
+                                    <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
+                                @endif
                             @endif
-                            <a href="{{ $students->url($lastPage) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $lastPage }}</a>
-                        @endif
-    
-                        {{-- button next --}}
-                        @if ($students->hasMorePages())
-                            <a href="{{ $students->nextPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">></a>
-                        @else
-                            <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed">></span>
-                        @endif
+        
+                            {{-- Nomor halaman tengah --}}
+                            @for ($i = $start; $i <= $end; $i++)
+                                @if ($i == $currentPage)
+                                    <span class="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-md">{{ $i }}</span>
+                                @else
+                                    <a href="{{ $students->url($i) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $i }}</a>
+                                @endif
+                            @endfor
+        
+                            {{-- Titik setelah --}}
+                            @if ($end < $lastPage)
+                                @if ($end < $lastPage - 1)
+                                    <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
+                                @endif
+                                <a href="{{ $students->url($lastPage) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $lastPage }}</a>
+                            @endif
+        
+                            {{-- button next --}}
+                            @if ($students->hasMorePages())
+                                <a href="{{ $students->nextPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">></a>
+                            @else
+                                <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed">></span>
+                            @endif
+                        </div>
+                    @else
+                    <div class="flex flex-col justify-center items-center py-10 gap-1 md:gap-2">
+                        <svg class="w-16 md:w-20 text-indigo-500 dark:text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <div class="text-center">
+                            <span class="font-medium text-base md:text-lg dark:text-white">"{{ $search }}"</span>
+                            <h2 class="text-sm md:text-base dark:text-white">Hasil pencarian tidak ditemukan</h2>
+                        </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -142,7 +155,8 @@
 
         <div id="modal" class="hidden fixed top-0 left-0 w-full h-screen justify-center items-center xl:flex xl:flex-1 xl:static xl:w-auto xl:h-auto bg-black/50 backdrop-blur-sm xl:bg-transparent">
             <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto scrollbar-hide bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
-                <div id="data-student-empty" class="h-96 flex justify-center items-center">
+                <div id="data-student-empty" class="h-96 flex flex-col justify-center items-center gap-3">
+                    <svg class="w-24 text-indigo-500 dark:text-white 2xl:w-28" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8l0 64c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96l0 160c0 13.3 10.7 24 24 24s24-10.7 24-24l0-160c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64l0 96c0 13.3 10.7 24 24 24s24-10.7 24-24l0-96c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
                     <h2 class="text-gray-700 text-xl text-center dark:text-gray-300">Pilih aksi untuk melihat atau mengedit data mahasiswa</h2>
                 </div>
     

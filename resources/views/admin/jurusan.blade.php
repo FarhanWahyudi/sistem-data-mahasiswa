@@ -72,8 +72,9 @@
         </div>
         <div id="modal" class="hidden fixed top-0 left-0 w-full h-screen justify-center items-center xl:flex xl:flex-1 xl:static xl:w-auto xl:h-auto bg-black/50 backdrop-blur-sm xl:bg-transparent">
             <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
-                <div id="data-major-empty" class="h-96 flex justify-center items-center">
-                    <h2 class="text-gray-700 text-xl text-center dark:text-gray-300">Pilih aksi untuk melihat atau mengedit data jurusan</h2>
+                <div id="data-major-empty" class="h-96 flex flex-col justify-center items-center gap-3">
+                    <svg class="w-24 text-indigo-500 dark:text-white 2xl:w-28" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8l0 64c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96l0 160c0 13.3 10.7 24 24 24s24-10.7 24-24l0-160c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64l0 96c0 13.3 10.7 24 24 24s24-10.7 24-24l0-96c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                    <h2 class="text-gray-700 text-xl text-center dark:text-gray-300 w-[80%]">Pilih aksi untuk melihat atau mengedit data jurusan</h2>
                 </div>
     
                 {{-- add major --}}
