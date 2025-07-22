@@ -22,41 +22,41 @@
         </div>
     </div>
     <div class="grid grid-cols-4 gap-5">
-        <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
+        <div class="group col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Total Mahasiswa</h2>
                 <span class="text-3xl font-medium dark:text-white">{{ $totalStudents }}</span>
             </div>
-            <div class="flex items-center justify-center bg-gradient-to-bl from-orange-500 to-orange-300 rounded-full w-11 h-11">
+            <div class="flex items-center justify-center bg-gradient-to-bl from-orange-500 to-orange-300 rounded-full w-11 h-11 group-hover:-translate-y-2 transition-all duration-300">
                 <svg class="text-white w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                 </svg>
             </div>
         </div>
-        <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
+        <div class="group col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Mahasiswa Pria</h2>
                 <span class="text-3xl font-medium dark:text-white">{{ $maleStudents }}</span>
             </div>
-            <div class="flex items-center justify-center bg-gradient-to-bl from-blue-500 to-blue-300 rounded-full w-11 h-11">
+            <div class="flex items-center justify-center bg-gradient-to-bl from-blue-500 to-blue-300 rounded-full w-11 h-11 group-hover:-translate-y-2 transition-all duration-300">
                 <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M289.8 46.8c3.7-9 12.5-14.8 22.2-14.8l112 0c13.3 0 24 10.7 24 24l0 112c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-33.4-33.4L321 204.2c19.5 28.4 31 62.7 31 99.8c0 97.2-78.8 176-176 176S0 401.2 0 304s78.8-176 176-176c37 0 71.4 11.4 99.8 31l52.6-52.6L295 73c-6.9-6.9-8.9-17.2-5.2-26.2zM400 80s0 0 0 0s0 0 0 0s0 0 0 0zM176 416a112 112 0 1 0 0-224 112 112 0 1 0 0 224z"/></svg>
             </div>
         </div>
-        <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
+        <div class="group col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Mahasiswa Wanita</h2>
                 <span class="text-3xl font-medium dark:text-white">{{ $femaleStudents }}</span>
             </div>
-            <div class="flex items-center justify-center bg-gradient-to-bl from-pink-500 to-pink-300 rounded-full w-11 h-11">
+            <div class="flex items-center justify-center bg-gradient-to-bl from-pink-500 to-pink-300 rounded-full w-11 h-11 group-hover:-translate-y-2 transition-all duration-300">
                 <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M80 176a112 112 0 1 1 224 0A112 112 0 1 1 80 176zM224 349.1c81.9-15 144-86.8 144-173.1C368 78.8 289.2 0 192 0S16 78.8 16 176c0 86.3 62.1 158.1 144 173.1l0 34.9-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 32c0 17.7 14.3 32 32 32s32-14.3 32-32l0-32 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-32 0 0-34.9z"/></svg>
             </div>
         </div>
-        <div class="col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
+        <div class="group col-span-full flex justify-between items-start px-3 py-4 rounded-xl border border-gray-200 bg-white sm:col-span-2 xl:col-span-1 dark:border-[#132347] dark:bg-[#132347] transition-all duration-300">
             <div class="h-full flex flex-col justify-between">
                 <h2 class="text-gray-500 font-medium dark:text-gray-300">Total Jurusan</h2>
                 <span class="text-3xl font-medium dark:text-white">{{ $totalMajors }}</span>
             </div>
-            <div class="flex items-center justify-center bg-gradient-to-bl from-green-500 to-green-300 rounded-full w-11 h-11">
+            <div class="flex items-center justify-center bg-gradient-to-bl from-green-500 to-green-300 rounded-full w-11 h-11 group-hover:-translate-y-2 transition-all duration-300">
                 <svg class="text-white w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                 </svg>
