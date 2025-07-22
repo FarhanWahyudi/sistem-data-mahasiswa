@@ -6,9 +6,6 @@ const modalContent = document.getElementById('modal-content');
 
 modal.addEventListener('click', function (e) {
     if (!modalContent.contains(e.target)) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        history.replaceState({}, '', baseUrl);
-
         modal.classList.add('hidden');
         modal.classList.remove('flex');
     }
@@ -16,10 +13,6 @@ modal.addEventListener('click', function (e) {
 
 document.querySelectorAll('.btn-add-student').forEach(button => {
     button.addEventListener('click', function () {
-
-        const baseUrl = window.location.origin + window.location.pathname;
-        history.replaceState({}, '', baseUrl);
-
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
@@ -37,8 +30,6 @@ document.querySelectorAll('.btn-show').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
         
-        history.pushState({}, '', '?id=' + id);
-
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
@@ -115,8 +106,6 @@ document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
 
-        history.pushState({}, '', '?edit-id=' + id);
-
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
@@ -147,20 +136,6 @@ document.querySelectorAll('.btn-edit').forEach(button => {
         .catch(err => console.error('Gagal ambil data jurusan:', err));
     })
 })
-
-window.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const editId = params.get('edit-id');
-
-    if (id) {
-        document.querySelector(`.btn-show[data-id="${id}"]`)?.click();
-    }
-
-    if (editId) {
-        document.querySelector(`.btn-edit[data-id="${editId}"]`)?.click();
-    }
-});
 
 // menambahkan data mahasiswa secara AJAX (tanpa reload) agar pesan error tidak hilang
 document.getElementById('student-form').addEventListener('submit', function(e) {

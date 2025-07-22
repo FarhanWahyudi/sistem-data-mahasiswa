@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Student;
 use App\Services\MajorService;
 use App\Services\StudentService;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -22,15 +23,17 @@ class StudentController extends Controller
         $this->majorService = $majorService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
         $fields = ['id', 'name', 'nim', 'major_id'];
-        $students = $this->studentService->getAll($fields);
+        $students = $this->studentService->getAll($fields, $search);
         $majors = $this->majorService->getAll();
 
         return view('admin.mahasiswa', [
             'students' => $students,
-            'majors' => $majors
+            'majors' => $majors,
+            'search' => $search
         ]);
     }
     
@@ -105,7 +108,7 @@ class StudentController extends Controller
     public function exportPdf()
     {
         $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id'];
-        $students = $this->studentService->getAll($fields);
+        $students = Student::select($fields)->with(['major:id,name'])->orderBy('name')->get();
 
         $pdf = Pdf::loadView('pdf.students', [
             'students' => $students
@@ -116,7 +119,7 @@ class StudentController extends Controller
     public function exportExcel()
     {
         $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id'];
-        $students = $this->studentService->getAll($fields);
+        $students = Student::select($fields)->with(['major:id,name'])->orderBy('name')->get();
 
         $writer = new Writer();
         $writer->openToBrowser('Data mahasiswa.xlsx');

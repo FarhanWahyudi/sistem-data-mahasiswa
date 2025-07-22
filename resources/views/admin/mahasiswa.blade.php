@@ -32,15 +32,20 @@
                     +
                 </button>
             </div>
-            <div class="flex items-center gap-1.5 mt-3 mb-1">
-                <a href="{{ route('student.excel') }}" class="flex gap-1 text-xs bg-green-500 px-3 py-1.5 rounded-md text-gray-50 font-medium md:text-sm md:gap-2">
-                    <svg class="w-4 text-gray-50" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z"/></svg>
-                    Export Excel
-                </a>
-                <a href="{{ route('student.pdf') }}" target="_blank" class="flex gap-1 text-xs bg-red-500 px-3 py-1.5 rounded-md text-gray-50 font-medium md:text-sm md:gap-2">
-                    <svg class="w-4 text-gray-50" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/></svg>
-                    Export PDF
-                </a>
+            <div class="flex flex-col justify-between gap-2 mt-3 mb-1 sm:flex-row sm:items-center sm:gap-0">
+                <div class="flex items-center gap-1.5">
+                    <a href="{{ route('student.excel') }}" class="flex gap-1 text-xs bg-green-500 px-3 py-1.5 rounded-md text-gray-50 font-medium md:text-sm md:gap-2">
+                        <svg class="w-4 text-gray-50" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z"/></svg>
+                        Export Excel
+                    </a>
+                    <a href="{{ route('student.pdf') }}" target="_blank" class="flex gap-1 text-xs bg-red-500 px-3 py-1.5 rounded-md text-gray-50 font-medium md:text-sm md:gap-2">
+                        <svg class="w-4 text-gray-50" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/></svg>
+                        Export PDF
+                    </a>
+                </div>
+                <form method="GET" action="{{ route('student.view') }}" class="w-full sm:w-80 lg:w-96 xl:w-52 2xl:w-80">
+                    <input type="text" name="search" value="{{ $search }}" class="w-full bg-transparent border border-indigo-500 rounded-md text-xs dark:text-gray-200 md:text-sm   " placeholder="Cari Mahasiswa">
+                </form>
             </div>
             <div class="overflow-x-auto">
                 <div class="w-[43rem] sm:w-full">
@@ -136,7 +141,7 @@
 
 
         <div id="modal" class="hidden fixed top-0 left-0 w-full h-screen justify-center items-center xl:flex xl:flex-1 xl:static xl:w-auto xl:h-auto bg-black/50 backdrop-blur-sm xl:bg-transparent">
-            <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
+            <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto scrollbar-hide bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
                 <div id="data-student-empty" class="h-96 flex justify-center items-center">
                     <h2 class="text-gray-700 text-xl text-center dark:text-gray-300">Pilih aksi untuk melihat atau mengedit data mahasiswa</h2>
                 </div>

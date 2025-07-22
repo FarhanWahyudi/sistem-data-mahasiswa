@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/chart.js',
-                'resources/js/studentAction.js'
+                'resources/js/studentAction.js',
+                'resources/js/majorAction.js',
             ],
             refresh: true,
         }),

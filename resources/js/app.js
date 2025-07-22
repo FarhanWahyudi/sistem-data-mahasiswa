@@ -45,3 +45,12 @@ darkModeToggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
 })
+
+window.onload = function () {
+    if (window.location.href.includes('page=')) {
+        const section = document.getElementById('data-section');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}

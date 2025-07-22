@@ -6,9 +6,18 @@ use App\Models\Student;
 
 class StudentRepository
 {
-    public function getAll(array $fields)
+    public function getAll(array $fields, ?string $search = null)
     {
-        return Student::select($fields)->with(['major:id,name'])->orderBy('name')->paginate(5);
+        // return Student::select($fields)->with(['major:id,name'])->orderBy('name')->paginate(5);
+
+        $query = Student::select($fields)->with(['major:id,name']);
+
+        if ($search) {
+            $query->where('name', 'like', "%$search%")
+                 ->orWhere('nim', 'like', "%$search%");
+        }
+
+        return $query->orderBy('name')->paginate(5)->withQueryString();
     }
 
     public function getById(int $id, array $fields)

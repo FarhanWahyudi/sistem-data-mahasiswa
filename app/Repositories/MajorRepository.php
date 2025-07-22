@@ -8,7 +8,7 @@ class MajorRepository
 {
     public function getAll()
     {
-        return Major::withCount(['students as total_students'])->orderBy('name')->paginate(5);
+        return Major::select('*')->withCount(['students as total_students'])->orderBy('name')->get();
     }
 
     public function getById(int $id)

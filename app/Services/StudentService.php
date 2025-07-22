@@ -13,9 +13,9 @@ class StudentService
         $this->studentRepository = $studentRepository;
     }
 
-    public function getAll(array $fields)
+    public function getAll(array $fields, ?string $search = null)
     {
-        return $this->studentRepository->getAll($fields);
+        return $this->studentRepository->getAll($fields, $search);
     }
 
     public function getById(int $id, array $fields)

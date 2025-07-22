@@ -13,3 +13,13 @@
 .no-spinner {
   -moz-appearance: textfield;
 }
+
+/* Tailwind plugin style untuk sembunyikan scrollbar */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari & Chrome */
+}
