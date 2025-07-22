@@ -16,6 +16,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::post('/admin/mahasiswa', 'store')->name('student.store');
     Route::post('/admin/mahasiswa/update/{student}', 'update')->name('student.update');
     Route::post('/admin/mahasiswa/delete/{id}', 'destroy')->name('student.destroy');
+    Route::get('/admin/mahasiswa/doc/pdf', 'viewPdf')->name('student.pdf');
 });
 
 Route::controller(MajorController::class)->group(function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Services\MajorService;
 use App\Services\StudentService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -97,5 +98,16 @@ class StudentController extends Controller
             toastr()->closeButton(true)->success('Data gagal dihapus.');
             return redirect()->route('student.view')->with('error', 'Data tidak ditemukan');
         }
+    }
+
+    public function viewPdf()
+    {
+        $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id'];
+        $students = $this->studentService->getAll($fields);
+
+        $pdf = Pdf::loadView('pdf.students', [
+            'students' => $students
+        ]);
+        return $pdf->stream('invoice.pdf');
     }
 }
