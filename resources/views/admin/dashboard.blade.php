@@ -109,6 +109,56 @@
 
                 </tbody>
             </table>
+            
+            <div class="mt-4 flex justify-center gap-1.5">
+
+                @php
+                    $currentPage = $students->currentPage();
+                    $lastPage = $students->lastPage();
+                    $start = max($currentPage - 2, 1);
+                    $end = min($currentPage + 2, $lastPage);
+                @endphp
+
+                {{-- button prevent --}}
+                @if ($students->onFirstPage())
+                    <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed"><</span>
+                @else
+                    <a href="{{ $students->previousPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"><</a>
+                @endif
+
+                {{-- Titik sebelum --}}
+                @if ($start > 1)
+                    <a href="{{ $students->url(1) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">1</a>
+                    @if ($start > 2)
+                        <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
+                    @endif
+                @endif
+
+                {{-- Nomor halaman tengah --}}
+                @for ($i = $start; $i <= $end; $i++)
+                    @if ($i == $currentPage)
+                        <span class="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-md">{{ $i }}</span>
+                    @else
+                        <a href="{{ $students->url($i) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $i }}</a>
+                    @endif
+                @endfor
+
+                {{-- Titik setelah --}}
+                @if ($end < $lastPage)
+                    @if ($end < $lastPage - 1)
+                        <span class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">...</span>
+                    @endif
+                    <a href="{{ $students->url($lastPage) }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">{{ $lastPage }}</a>
+                @endif
+
+                {{-- button next --}}
+                @if ($students->hasMorePages())
+                    <a href="{{ $students->nextPageUrl() }}" class="w-8 h-8 flex items-center justify-center border border-blue-600 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">></a>
+                @else
+                    <span class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-400 dark:border-gray-500 cursor-not-allowed">></span>
+                @endif
+            </div>
+
         </div>
         <div class="w-full xl:flex-1 bg-white rounded-xl border border-gray-200 p-5 overflow-x-auto 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
             <h2 class="text-gray-500 font-medium dark:text-white">Daftar Jurusan</h2>
