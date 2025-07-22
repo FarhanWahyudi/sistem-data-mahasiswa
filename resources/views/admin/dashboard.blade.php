@@ -85,7 +85,7 @@
     <div class="flex items-start gap-8 flex-wrap">
         <div id="data-section" class="w-full xl:w-[60%] bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
             <h2 class="text-gray-500 font-medium dark:text-white">Daftar Mahasiswa</h2>
-            <div class="flex flex-col items-stretch overflow-x-auto">
+            <div class="flex flex-col overflow-x-auto">
                 <div class="w-[43rem] sm:w-full">
                     <table class="mt-5 w-full">
                         <thead>

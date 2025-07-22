@@ -1,31 +1,55 @@
 const showStudent = document.getElementById('show-student')
 const editStudent = document.getElementById('edit-student')
 const addStudent = document.getElementById('add-student')
+const dataStudentEmpty = document.getElementById('data-student-empty');
 const modal = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content');
+const errorStudentMessages = document.querySelectorAll('.error-student-message');
 
+// close modal ketika click di luar modal
 modal.addEventListener('click', function (e) {
     if (!modalContent.contains(e.target)) {
         modal.classList.add('hidden');
-        modal.classList.remove('flex');
+
+        dataStudentEmpty.classList.remove('hidden');
+        addStudent.classList.add('hidden');
+        showStudent.classList.add('hidden');
+        editStudent.classList.add('hidden');
+
+        errorStudentMessages.forEach(el => el.innerText = '');
     }
 });
 
+// close modal dengan button
+document.querySelectorAll('.btn-close-student').forEach(button => {
+    button.addEventListener('click', function () {
+        modal.classList.add('hidden');
+
+        dataStudentEmpty.classList.remove('hidden');
+        addStudent.classList.add('hidden');
+        showStudent.classList.add('hidden');
+        editStudent.classList.add('hidden');
+
+        errorStudentMessages.forEach(el => el.innerText = '');
+    })
+})
+
+// menampilkan modal menambah mahasiswa
 document.querySelectorAll('.btn-add-student').forEach(button => {
     button.addEventListener('click', function () {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-student-empty').classList.add('hidden');
-        
+        dataStudentEmpty.classList.add('hidden');
         showStudent.classList.add('hidden');
-        
-        editStudent.classList.add('hidden');
-        
+        editStudent.classList.add('hidden');     
         addStudent.classList.remove('hidden');
+
+        errorStudentMessages.forEach(el => el.innerText = '');
     })
 })
 
+// menampilkan modal detail mahasiswa
 document.querySelectorAll('.btn-show').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
@@ -33,13 +57,12 @@ document.querySelectorAll('.btn-show').forEach(button => {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-student-empty').classList.add('hidden');
-
+        dataStudentEmpty.classList.add('hidden');
         addStudent.classList.add('hidden');
-
         showStudent.classList.remove('hidden');
-
         editStudent.classList.add('hidden');
+
+        errorStudentMessages.forEach(el => el.innerText = '');
 
         fetch(`/admin/mahasiswa/${id}`)
         .then(res => res.json())
@@ -102,6 +125,7 @@ document.querySelectorAll('.btn-show').forEach(button => {
     });
 });
 
+// menampilkan modal edit mahasiswa
 document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
@@ -109,13 +133,12 @@ document.querySelectorAll('.btn-edit').forEach(button => {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-student-empty').classList.add('hidden');
-
+        dataStudentEmpty.classList.add('hidden');
         addStudent.classList.add('hidden');
-
         showStudent.classList.add('hidden');
-
         editStudent.classList.remove('hidden');
+        
+        errorStudentMessages.forEach(el => el.innerText = '');
 
         fetch(`/admin/mahasiswa/${id}`)
         .then(res => res.json())

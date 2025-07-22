@@ -1,31 +1,55 @@
 const showMajor = document.getElementById('show-major')
 const editMajor = document.getElementById('edit-major')
 const addMajor = document.getElementById('add-major')
+const dataMajorEmpty = document.getElementById('data-major-empty')
 const modal = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content');
+const errorMajorMessages = document.querySelectorAll('.error-major-message');
 
+// close modal ketika diclick di luar modal
 modal.addEventListener('click', function (e) {
     if (!modalContent.contains(e.target)) {
         modal.classList.add('hidden');
-        modal.classList.remove('flex');
+
+        dataMajorEmpty.classList.remove('hidden');
+        addMajor.classList.add('hidden');
+        showMajor.classList.add('hidden');
+        editMajor.classList.add('hidden');
+
+        errorMajorMessages.forEach(el => el.innerText = '');
     }
 });
 
+// close modal dengan button
+document.querySelectorAll('.btn-close-major').forEach(button => {
+    button.addEventListener('click', function () {
+        modal.classList.add('hidden');
+
+        dataMajorEmpty.classList.remove('hidden');
+        addMajor.classList.add('hidden');
+        showMajor.classList.add('hidden');
+        editMajor.classList.add('hidden');
+
+        errorMajorMessages.forEach(el => el.innerText = '');
+    })
+})
+
+// menampilkan modal tambah jurusan
 document.querySelectorAll('.btn-add-major').forEach(button => {
     button.addEventListener('click', function () {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-major-empty').classList.add('hidden');
-        
-        showMajor.classList.add('hidden');
-        
-        editMajor.classList.add('hidden');
-        
+        dataMajorEmpty.classList.add('hidden');       
+        showMajor.classList.add('hidden');        
+        editMajor.classList.add('hidden');       
         addMajor.classList.remove('hidden');
+
+        errorMajorMessages.forEach(el => el.innerText = '');
     })
 })
 
+// menampilkan modal detail jurusan
 document.querySelectorAll('.btn-show').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
@@ -33,13 +57,12 @@ document.querySelectorAll('.btn-show').forEach(button => {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-major-empty').classList.add('hidden');
-
+        dataMajorEmpty.classList.add('hidden');
         addMajor.classList.add('hidden');
-
         showMajor.classList.remove('hidden');
-
         editMajor.classList.add('hidden');
+
+        errorMajorMessages.forEach(el => el.innerText = '');
 
         fetch(`/admin/jurusan/${id}/students`)
         .then(res => res.json())
@@ -69,6 +92,7 @@ document.querySelectorAll('.btn-show').forEach(button => {
     });
 });
 
+// menampilkan modal edit jurusan
 document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function () {
         const id = this.dataset.id;
@@ -76,13 +100,12 @@ document.querySelectorAll('.btn-edit').forEach(button => {
         modal.classList.remove('hidden')
         modal.classList.add('flex')
 
-        document.getElementById('data-major-empty').classList.add('hidden');
-
+        dataMajorEmpty.classList.add('hidden');
         addMajor.classList.add('hidden');
-
         showMajor.classList.add('hidden');
-
         editMajor.classList.remove('hidden')
+
+        errorMajorMessages.forEach(el => el.innerText = '');
 
         fetch(`/admin/jurusan/${id}`)
         .then(res => res.json())

@@ -71,7 +71,9 @@
             </div>
         </div>
         <div id="modal" class="hidden fixed top-0 left-0 w-full h-screen justify-center items-center xl:flex xl:flex-1 xl:static xl:w-auto xl:h-auto bg-black/50 backdrop-blur-sm xl:bg-transparent">
-            <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
+            <div id="modal-content" class="w-[90%] max-h-[80vh] overflow-y-auto scrollbar-hide bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347]  sm:w-[80%] md:w-[60%] lg:w-[50%] xl:h-auto xl:w-full transition-all duration-300">
+
+                {{-- empty major --}}
                 <div id="data-major-empty" class="h-96 flex flex-col justify-center items-center gap-3">
                     <svg class="w-24 text-indigo-500 dark:text-white 2xl:w-28" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8l0 64c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96l0 160c0 13.3 10.7 24 24 24s24-10.7 24-24l0-160c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64l0 96c0 13.3 10.7 24 24 24s24-10.7 24-24l0-96c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
                     <h2 class="text-gray-700 text-xl text-center dark:text-gray-300 w-[80%]">Pilih aksi untuk melihat atau mengedit data jurusan</h2>
@@ -81,7 +83,7 @@
                 <div id="add-major" class="hidden">
                     <div class="flex items-center justify-between">
                         <h2 class="text-gray-700 font-medium text-lg dark:text-white">Tambah Mahasiswa</h2>     
-                        <button class="xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="xl:hidden btn-close-major">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
@@ -91,9 +93,10 @@
                             <div class="flex flex-col flex-wrap 2xl:flex-row 2xl:items-center">
                                 <label for="major" class="text-gray-600 dark:text-gray-200 text-sm sm:text-base">JURUSAN</label>
                                 <input name="major" type="text" class="w-full bg-transparent mt-2 border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base" value="{{ old('major') }}">
-                                <span id="name-error" class="w-full text-red-500 mt-0.5 text-xs sm:text-sm"></span>
+                                <span id="name-error" class="error-major-message w-full text-red-500 mt-0.5 text-xs sm:text-sm"></span>
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end gap-2">
+                                <button type="button" class="btn-close-major bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
                                 <button type="submit" class="bg-blue-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Simpan</button>
                             </div>
                         </div>
@@ -107,7 +110,7 @@
                             <h2 class="text-gray-700 font-medium text-lg dark:text-white">Daftar Mahasiswa</h2>     
                             <span id="major-label" class="text-gray-600 dark:text-gray-300"></span>
                         </div>
-                        <button class="mt-2 xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="mt-2 xl:hidden btn-close-major">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
@@ -123,6 +126,9 @@
                                 
                             </tbody>
                         </table>
+                        <div class="flex justify-end gap-2 mt-5">
+                            <button type="button" class="btn-close-major bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -131,7 +137,7 @@
                 <div id="edit-major" class="hidden">
                     <div class="flex items-center justify-between">
                         <h2 class="text-gray-700 font-medium text-lg dark:text-white">Edit</h2>     
-                        <button class="xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="xl:hidden btn-close-major">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
@@ -142,9 +148,10 @@
                             <div class="flex flex-wrap flex-col gap-2 2xl:flex-row 2xl:gap-2 2xl:items-center">
                                 <label for="input-name" class="text-gray-600 dark:text-gray-200 text-sm sm:text-base">JURUSAN</label>
                                 <input id="input-name" name="major" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                <span id="edit-name-error" class="w-full text-red-500 mt-0.5 text-xs sm:text-sm"></span>
+                                <span id="edit-name-error" class="error-major-message w-full text-red-500 mt-0.5 text-xs sm:text-sm"></span>
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end gap-2">
+                                <button type="button" class="btn-close-major bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
                                 <button type="submit" class="bg-blue-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Simpan</button>
                             </div>
                         </div>

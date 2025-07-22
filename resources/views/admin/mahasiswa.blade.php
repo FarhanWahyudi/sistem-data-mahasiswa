@@ -47,7 +47,7 @@
                     <input type="text" name="search" value="{{ $search }}" class="w-full bg-transparent border border-indigo-500 rounded-md text-xs dark:text-gray-200 md:text-sm   " placeholder="Cari Mahasiswa">
                 </form>
             </div>
-            <div class="overflow-x-auto">
+            <div class="flex overflow-x-auto">
                 <div class="{ !$students->isEmpty() ? 'w-[43rem]' : 'w-full' } sm:w-full">
                     @if (!$students->isEmpty())
 
@@ -89,7 +89,7 @@
                             </tbody>
                         </table>
         
-                        <div class="mt-4 flex justify-center gap-1.5">
+                        <div class="mt-4 flex w-full justify-center gap-1.5">
         
                             @php
                                 $currentPage = $students->currentPage();
@@ -164,7 +164,7 @@
                 <div id="add-student" class="hidden">
                     <div class="flex items-center justify-between">
                         <h2 class="text-gray-700 font-medium text-lg dark:text-white">Tambah Mahasiswa</h2>     
-                        <button class="xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="btn-close-student xl:hidden">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
@@ -175,14 +175,14 @@
                                 <label for="nim" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">NIM</label>
                                 <div class="w-full">
                                     <input id="nim" name="nim" type="number" class="w-full no-spinner bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="nim-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="nim-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="name" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">NAMA</label>
                                 <div class="w-full">
                                     <input id="name" name="name" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="name-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="name-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
@@ -194,14 +194,14 @@
                                             <option value="{{ $major->id }}" class="dark:bg-[#132347]">{{ $major->name }}</option>
                                         @endforeach
                                     </select>
-                                    <span id="major-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="major-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="birth-date" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">TANGGAL LAHIR</label>
                                 <div class="w-full">
                                     <input id="birth-date" name="birth_date" type="date" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="birth-date-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="birth-date-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
@@ -212,7 +212,7 @@
                                         <option value="male" class="dark:bg-[#132347]">Laki-laki</option>
                                         <option value="female" class="dark:bg-[#132347]">Perempuan</option>
                                     </select>
-                                    <span id="gender-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="gender-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-5 mt-5">
@@ -224,24 +224,25 @@
                                 <label for="kecamatan" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KEC</label>
                                 <div class="w-full">
                                     <input id="kecamatan" name="kecamatan" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="kec-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="kec-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="kabupaten" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KAB</label>
                                 <div class="w-full">
                                     <input id="kabupaten" name="kabupaten" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="kab-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="kab-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="provinsi" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">PROVINSI</label>
                                 <div class="w-full">
                                     <input id="provinsi" name="provinsi" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="prov-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="prov-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end gap-2">
+                                <button type="button" class="btn-close-student bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
                                 <button class="bg-blue-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Simpan</button>
                             </div>
                         </div>
@@ -252,12 +253,15 @@
                 <div id="show-student" class="hidden">
                     <div class="flex items-center justify-between">
                         <h2 class="text-gray-700 font-medium text-lg dark:text-white">Detail Mahasiswa</h2>     
-                        <button class="xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="btn-close-student xl:hidden">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
                     <div id="show-student-container" class="flex flex-col gap-2 mt-5">
                         
+                    </div>
+                    <div class="flex justify-end mt-3">
+                        <button type="button" class="btn-close-student bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
                     </div>
                 </div>
     
@@ -265,7 +269,7 @@
                 <div id="edit-student" class="hidden">
                     <div class="flex items-center justify-between">
                         <h2 class="text-gray-700 font-medium text-lg dark:text-white">Edit</h2>     
-                        <button class="xl:hidden" onclick="document.getElementById('modal').classList.add('hidden')">
+                        <button class="btn-close-student xl:hidden">
                             <svg class="text-red-500 w-2.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         </button>
                     </div>
@@ -277,14 +281,14 @@
                                 <label for="edit-nim" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">NIM</label>
                                 <div class="w-full">
                                     <input id="edit-nim" name="nim" type="number" class="w-full no-spinner bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-nim-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-nim-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="edit-name" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">NAMA</label>
                                 <div class="w-full">
                                     <input id="edit-name" name="name" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-name-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-name-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
@@ -295,14 +299,14 @@
                                             <option value="{{ $major->id }}" class="dark:bg-[#132347]">{{ $major->name }}</option>
                                         @endforeach
                                     </select>
-                                    <span id="edit-major-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-major-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="edit-birth-date" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">TANGGAL LAHIR</label>
                                 <div class="w-full">
                                     <input id="edit-birth-date" name="birth_date" type="date" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-birth-date-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-birth-date-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
@@ -312,7 +316,7 @@
                                         <option value="male" class="dark:bg-[#132347]">Laki-laki</option>
                                         <option value="female" class="dark:bg-[#132347]">Perempuan</option>
                                     </select>
-                                    <span id="edit-gender-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-gender-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-5 mt-5">
@@ -324,24 +328,25 @@
                                 <label for="edit-kecamatan" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KEC</label>
                                 <div class="w-full">
                                     <input id="edit-kecamatan" name="kecamatan" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-kec-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-kec-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="edit-kabupaten" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KAB</label>
                                 <div class="w-full">
                                     <input id="edit-kabupaten" name="kabupaten" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-kab-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-kab-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
                                 <label for="edit-provinsi" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">PROVINSI</label>
                                 <div class="w-full">
                                     <input id="edit-provinsi" name="provinsi" type="text" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
-                                    <span id="edit-prov-error" class="text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                    <span id="edit-prov-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end gap-2">
+                                <button type="button" class="btn-close-student bg-red-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Batal</button>
                                 <button type="submit" class="bg-blue-500 font-medium px-3 py-1.5 text-white rounded-md text-sm sm:text-base">Simpan</button>
                             </div>
                         </div>
