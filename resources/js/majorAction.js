@@ -54,7 +54,10 @@ document.querySelectorAll('.btn-show').forEach(button => {
         .then(res => res.json())
         .then(data => {
             const tbody = document.querySelector('#students-table-body');
+            const label = document.querySelector('#major-label');
+
             tbody.innerHTML = '';
+            label.innerHTML = data.major.name;
 
             if (data.students.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="2" class="text-center py-4 text-gray-500">Tidak ada data mahasiswa</td></tr>';

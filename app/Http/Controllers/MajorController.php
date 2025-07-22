@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MajorRequest;
+use App\Models\Major;
 use App\Models\Student;
 use App\Services\MajorService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -69,8 +70,10 @@ class MajorController extends Controller
     public function students($id)
     {
         $students = Student::where('major_id', $id)->get();
+        $major = $this->majorService->getById($id);
 
         return response()->json([
+            'major' => $major,
             'students' => $students,
         ]);
     }
