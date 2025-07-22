@@ -9,6 +9,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use OpenSpout\Writer\XLSX\Writer;
+use OpenSpout\Common\Entity\Row;
 
 class StudentController extends Controller
 {
@@ -100,7 +102,7 @@ class StudentController extends Controller
         }
     }
 
-    public function viewPdf()
+    public function exportPdf()
     {
         $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id'];
         $students = $this->studentService->getAll($fields);
@@ -108,6 +110,31 @@ class StudentController extends Controller
         $pdf = Pdf::loadView('pdf.students', [
             'students' => $students
         ]);
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('Data Mahasiswa.pdf');
+    }
+
+    public function exportExcel()
+    {
+        $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id'];
+        $students = $this->studentService->getAll($fields);
+
+        $writer = new Writer();
+        $writer->openToBrowser('Data mahasiswa.xlsx');
+
+        $writer->addRow(Row::fromValues(['NO', 'NIM', 'NAMA', 'TANGGAL LAHIR', 'JURUSAN', 'GENDER', 'ALAMAT']));
+
+        foreach ($students as $index => $student) {
+            $writer->addRow(Row::fromValues([
+                $index + 1,
+                $student->nim,
+                $student->name,
+                \Carbon\Carbon::parse($student->birth_date)->locale('id')->translatedFormat('d F Y'),
+                $student->major->name,
+                $student->gender === 'male' ? 'Laki-laki' : 'Perempuan',
+                $student->address,
+            ]));
+        }
+        
+        $writer->close();
     }
 }

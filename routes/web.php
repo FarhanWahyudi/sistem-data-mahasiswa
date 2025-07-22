@@ -16,7 +16,8 @@ Route::controller(StudentController::class)->group(function () {
     Route::post('/admin/mahasiswa', 'store')->name('student.store');
     Route::post('/admin/mahasiswa/update/{student}', 'update')->name('student.update');
     Route::post('/admin/mahasiswa/delete/{id}', 'destroy')->name('student.destroy');
-    Route::get('/admin/mahasiswa/doc/pdf', 'viewPdf')->name('student.pdf');
+    Route::get('/admin/mahasiswa/doc/pdf', 'exportPdf')->name('student.pdf');
+    Route::get('/admin/mahasiswa/doc/excel', 'exportExcel')->name('student.excel');
 });
 
 Route::controller(MajorController::class)->group(function () {
