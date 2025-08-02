@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,15 @@ Route::controller(MajorController::class)->middleware(['auth'])->group(function 
     Route::post('/admin/jurusan/update/{id}', 'update')->name('major.update');
     Route::post('/admin/jurusan/delete/{id}', 'destroy')->name('major.destroy');
     Route::get('/admin/jurusan/{id}/students', 'students')->name('major.students');
+});
+
+Route::controller(CityController::class)->middleware(['auth'])->group(function () {
+    Route::get('/admin/kota', 'index')->name('city.view');
+    Route::get('/admin/kota/{id}', 'show')->name('city.show');
+    Route::post('/admin/kota', 'store')->name('city.store');
+    Route::post('/admin/kota/update/{id}', 'update')->name('city.update');
+    Route::post('/admin/kota/delete/{id}', 'destroy')->name('city.destroy');
+    Route::get('/admin/kota/{id}/students', 'students')->name('major.students');
 });
 
 

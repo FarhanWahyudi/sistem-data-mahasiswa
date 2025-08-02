@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CityService;
 use App\Services\MajorService;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
@@ -10,10 +11,12 @@ class DashboardController extends Controller
 {
     private StudentService $studentService;
     private MajorService $majorService;
+    private CityService $cityService;
 
-    public function __construct(StudentService $studentService, MajorService $majorService) {
+    public function __construct(StudentService $studentService, MajorService $majorService, CityService $cityService) {
         $this->studentService = $studentService;
         $this->majorService = $majorService;
+        $this->cityService = $cityService;
     }
 
     public function index()
@@ -26,6 +29,7 @@ class DashboardController extends Controller
         $maleStudents = $this->studentService->countByGender('male');
         $femaleStudents = $this->studentService->countByGender('female');
         $totalMajors = $this->majorService->countAll();
+        $cities = $this->cityService->getAll();
 
         return view('admin.dashboard', [
             'students' => $students,
@@ -34,6 +38,7 @@ class DashboardController extends Controller
             'maleStudents' => $maleStudents,
             'femaleStudents' => $femaleStudents,
             'totalMajors' => $totalMajors,
+            'cities' => $cities,
         ]);
     }
 }

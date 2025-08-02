@@ -152,6 +152,7 @@ document.querySelectorAll('.btn-edit').forEach(button => {
             document.getElementById('edit-major').value = data.major.id;
             document.getElementById('edit-birth-date').value = data.birth_date;
             document.getElementById('edit-gender').value = data.gender;
+            document.getElementById('edit-city').value = data.city.id;
             document.getElementById('edit-kecamatan').value = kecamatan;
             document.getElementById('edit-kabupaten').value = kabupaten;
             document.getElementById('edit-provinsi').value = provinsi;
@@ -184,6 +185,7 @@ document.getElementById('student-form').addEventListener('submit', function(e) {
                 document.getElementById('major-error').textContent = data.errors.major?.[0] || '';
                 document.getElementById('birth-date-error').textContent = data.errors.birth_date?.[0] || '';
                 document.getElementById('gender-error').textContent = data.errors.gender?.[0] || '';
+                document.getElementById('city-error').textContent = data.errors.city?.[0] || '';
                 document.getElementById('kec-error').textContent = data.errors.kecamatan?.[0] || '';
                 document.getElementById('kab-error').textContent = data.errors.kabupaten?.[0] || '';
                 document.getElementById('prov-error').textContent = data.errors.provinsi?.[0] || '';
@@ -220,6 +222,7 @@ document.getElementById('student-edit-form').addEventListener('submit', function
                 document.getElementById('edit-major-error').textContent = data.errors.major_id?.[0] || '';
                 document.getElementById('edit-birth-date-error').textContent = data.errors.birth_date?.[0] || '';
                 document.getElementById('edit-gender-error').textContent = data.errors.gender?.[0] || '';
+                document.getElementById('edit-city-error').textContent = data.errors.city?.[0] || '';
                 document.getElementById('edit-kec-error').textContent = data.errors.kecamatan?.[0] || '';
                 document.getElementById('edit-kab-error').textContent = data.errors.kabupaten?.[0] || '';
                 document.getElementById('edit-prov-error').textContent = data.errors.provinsi?.[0] || '';

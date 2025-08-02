@@ -76,3 +76,40 @@ new Chart(ctx2, {
         maintainAspectRatio: false,
     }
 });
+
+const ctx3 = document.getElementById('myChart3');
+const cities = JSON.parse(ctx3.dataset.cities);
+
+const labelsCity = cities.map(city => city.name);
+const dataCity = cities.map(city => city.total_student); 
+
+new Chart(ctx3, {
+    type: 'pie',
+    data: {
+        labels: labelsCity,
+        datasets: [{
+            label: 'Total Mahasiswa',
+            data: dataCity,
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)',
+                'rgba(200, 19, 225, 0.4)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(200, 19, 225, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    }
+});

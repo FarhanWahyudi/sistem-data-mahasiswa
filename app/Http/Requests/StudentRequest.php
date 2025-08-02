@@ -29,6 +29,7 @@ class StudentRequest extends FormRequest
             'birth_date' => 'required|date|before:today',
             'gender' => 'required|in:male,female',
             'major' => 'required|exists:majors,id',
+            'city' => 'required|exists:cities,id',
             'kecamatan' => 'required|string',
             'kabupaten' => 'required|string',
             'provinsi' => 'required|string'
@@ -64,6 +65,9 @@ class StudentRequest extends FormRequest
 
             'provinsi.required' => 'Provinsi wajib diisi.',
             'provinsi.string' => 'Provinsi harus berupa teks.',
+
+            'city.required' => 'kota wajib diisi.',
+            'city.exists' => 'kota wajib diisi dengan data yang tersedia.',
         ];
     }
 }

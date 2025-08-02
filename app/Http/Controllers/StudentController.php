@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
+use App\Services\CityService;
 use App\Services\MajorService;
 use App\Services\StudentService;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -17,29 +18,33 @@ class StudentController extends Controller
 {
     private StudentService $studentService;
     private MajorService $majorService;
+    private CityService $cityService;
 
-    public function __construct(StudentService $studentService, MajorService $majorService) {
+    public function __construct(StudentService $studentService, MajorService $majorService, CityService $cityService) {
         $this->studentService = $studentService;
         $this->majorService = $majorService;
+        $this->cityService = $cityService;
     }
 
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $fields = ['id', 'name', 'nim', 'major_id'];
+        $fields = ['id', 'name', 'nim', 'major_id', 'city_id'];
         $students = $this->studentService->getAll($fields, $search);
         $majors = $this->majorService->getAll();
+        $cities = $this->cityService->getAll();
 
         return view('admin.mahasiswa', [
             'students' => $students,
             'majors' => $majors,
-            'search' => $search
+            'search' => $search,
+            'cities' => $cities,
         ]);
     }
     
     public function show(int $id)
     {
-        $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id',];
+        $fields = ['id', 'name', 'nim', 'birth_date', 'gender', 'address', 'major_id', 'city_id'];
         $student = $this->studentService->getById($id, $fields);
 
         return response()->json($student);
@@ -57,6 +62,7 @@ class StudentController extends Controller
             'name' => Str::title($validated['name']),
             'birth_date' => $validated['birth_date'],
             'gender' => $validated['gender'],
+            'city_id' => $validated['city'],
             'major_id' => $validated['major'],
             'address' => "Kec. {$kecamatan} Kab. {$kabupaten} Prov. {$provinsi}",
         ];
@@ -79,6 +85,7 @@ class StudentController extends Controller
             'name' => Str::title($validated['name']),
             'birth_date' => $validated['birth_date'],
             'gender' => $validated['gender'],
+            'city_id' => $validated['city'],
             'major_id' => $validated['major'],
             'address' => "Kec. {$kecamatan} Kab. {$kabupaten} Prov. {$provinsi}",
         ];

@@ -14,10 +14,16 @@ class Student extends Model
         'gender',
         'address',
         'major_id',
+        'city_id'
     ];
 
     public function major(): BelongsTo
     {
         return $this->belongsTo(Major::class);
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

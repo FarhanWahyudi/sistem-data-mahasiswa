@@ -56,6 +56,7 @@
                                 <tr class="border-b border-gray-200 gap-x-10 dark:border-gray-400 transition-all duration-300">
                                     <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NAMA</th>
                                     <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">NIM</th>
+                                    <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">KOTA</th>
                                     <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">JURUSAN</th>
                                     <th class="px-3 text-start text-gray-400 font-medium text-xs py-2 md:text-sm">AKSI</th>
                                 </tr>
@@ -66,6 +67,7 @@
                                     <tr class="border-b border-gray-200 dark:border-gray-400 transition-all duration-300">
                                         <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->name }}</td>
                                         <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->nim }}</td>
+                                        <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->city->name }}</td>
                                         <td class="px-3 text-xs py-4 text-gray-700 dark:text-gray-300 md:text-sm">{{ $student->major->name }}</td>
                                         <td class="px-3 py-4">
                                             <div class="flex gap-2 md:gap-3">
@@ -215,6 +217,18 @@
                                     <span id="gender-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
+                            <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
+                                <label for="city" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KOTA</label>
+                                <div class="w-full">
+                                    <select id="city" name="city" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
+                                        <option value="" class="dark:bg-[#132347]" selected disabled>Pilih Kota</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}" class="dark:bg-[#132347]">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span id="city-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                </div>
+                            </div>
                             <div class="flex items-center gap-5 mt-5">
                                 <hr class="w-full border-t border-gray-400">
                                 <h2 class="text-gray-600 dark:text-gray-200 text-sm sm:text-base">ALAMAT</h2>
@@ -317,6 +331,18 @@
                                         <option value="female" class="dark:bg-[#132347]">Perempuan</option>
                                     </select>
                                     <span id="edit-gender-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 2xl:flex-row 2xl:gap-0">
+                                <label for="edit-city" class="w-36 flex-shrink-0 text-gray-600 dark:text-gray-200 text-sm sm:text-base">KOTA</label>
+                                <div class="w-full">
+                                    <select id="edit-city" name="city" class="w-full bg-transparent border border-indigo-500 rounded-md text-gray-900 dark:text-gray-200 text-sm sm:text-base">
+                                        <option value="" class="dark:bg-[#132347]" selected disabled>Pilih Kota</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}" class="dark:bg-[#132347]">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span id="edit-city-error" class="error-student-message text-red-500 mt-1 text-xs sm:text-sm"></span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-5 mt-5">

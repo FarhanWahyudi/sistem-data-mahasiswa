@@ -10,7 +10,7 @@ class StudentRepository
     {
         // return Student::select($fields)->with(['major:id,name'])->orderBy('name')->paginate(5);
 
-        $query = Student::select($fields)->with(['major:id,name']);
+        $query = Student::select($fields)->with(['major:id,name', 'city:id,name']);
 
         if ($search) {
             $query->where('name', 'like', "%$search%")
@@ -22,7 +22,7 @@ class StudentRepository
 
     public function getById(int $id, array $fields)
     {
-        return Student::select($fields)->with(['major:id,name'])->orderBy('name')->findOrFail($id);
+        return Student::select($fields)->with(['major:id,name', 'city:id,name'])->orderBy('name')->findOrFail($id);
     }
 
     public function create(array $data)

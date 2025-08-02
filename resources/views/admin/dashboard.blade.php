@@ -81,6 +81,17 @@
                 </canvas>
             </div>
         </div>
+        <div class="col-span-full bg-white rounded-xl border border-gray-200 p-5 md:col-span-1 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
+            <h2 class="text-gray-500 font-medium dark:text-white">Total mahasiswa berdasarkan kota</h2>
+            <div class="mt-5 xl:h-96">
+                <canvas id="myChart3"
+                data-cities='@json($cities->map(fn($m) => [
+                    'name' => $m->name,
+                    'total_student' => $m->students->count()
+                ]))'>
+                </canvas>
+            </div>
+        </div>
     </div>
     <div class="flex items-start gap-8 flex-wrap">
         <div id="data-section" class="w-full xl:w-[60%] bg-white rounded-xl border border-gray-200 p-5 2xl:p-8 dark:bg-[#132347] dark:border-[#132347] transition-all duration-300">
